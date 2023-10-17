@@ -1,0 +1,19 @@
+{% extends 'ecommerce/base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="row col-6 mt-3">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form|crispy}}
+        <p class="text-center">Si no tienes una cuenta, regístrate <a href="/register">aquí</a>.</p>
+        <input type="submit" value="Enviar">
+    </form>
+    
+</div>
+{% endblock content %}
+
+{% comment %}     Usuario1: usuarioprueba1     Contraseña: usuario1234
+                  Usuario2: usuarioprueba2     Contraseña: usuario1234
+                  Usuario3: usuarioprueba3     Contraseña: usuario1234
+                  Superusuario: admin          Contraseña: admin                          {% endcomment %}

@@ -1,0 +1,63 @@
+{% extends 'ecommerce/base.html' %}
+
+{% block filter %}
+{% if user.is_authenticated %}
+<div class='row'>
+  <form action="" method='post' class="d-flex flex-wrap align-items-start">
+    {% csrf_token %}
+    <div class="m-2 col">
+      <label for="sub_categoria_codigo">Sub Categoría (código)</label>
+      <input type="text" name='sub_categoria_codigo' placeholder='' class="form-control mt-2">
+    </div>
+    <div class="m-2 col">
+      <label for="sub_categoria_nombre">Sub Categoría (nombre)</label>
+      <input type="text" name='sub_categoria_nombre' placeholder='' class="form-control mt-2">
+    </div>
+    <div class="m-2 col">
+      <label for "producto_codigo">Producto (código)</label>
+      <input type="text" name='producto_codigo' placeholder='' class="form-control mt-2">
+    </div>
+    <div class="m-2 col">
+      <label for="producto_nombre">Producto (nombre)</label>
+      <input type="text" name='producto_nombre' placeholder='' class="form-control mt-2">
+    </div>
+    <div class="m-2 col-12">
+      <button type="submit" class="btn btn-primary w-100">Filtrar</button>
+    </div>
+  </form>
+</div>
+{% endif %}
+{% endblock filter %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  <div class="mt-5">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ProductId</th>
+          <th scope="col">Nombre Producto</th>
+          <th scope="col">Código Producto</th>
+          <th scope="col">Color</th>
+          <th scope="col">Nombre Sub Categoría</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for producto in productos %}
+        <tr>
+          <td>{{producto.productid}}</td>
+          <td>{{producto.name}}</td>
+          <td>{{producto.productnumber}}</td>
+          <td>{{producto.color}}</td>
+          <td>{{producto.subcategoria_name}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <li class="nav-link">
+    <a class="nav-link btn btn-link text-primary" href="/logout/">Cerrar sesión </a>
+  </li>
+{% endif %}
+{% endblock content %}
